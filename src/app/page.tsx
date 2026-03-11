@@ -4,7 +4,6 @@ import SocialProof from '@/components/sections/SocialProof'
 import Features from '@/components/sections/Features'
 import HowItWorks from '@/components/sections/HowItWorks'
 import ToolsGrid from '@/components/sections/ToolsGrid'
-import Security from '@/components/sections/Security'
 import ForWhom from '@/components/sections/ForWhom'
 import Pricing from '@/components/sections/Pricing'
 import Testimonials from '@/components/sections/Testimonials'
@@ -21,7 +20,6 @@ export default function Home() {
       <Features />
       <HowItWorks />
       <ToolsGrid />
-      <Security />
       <ForWhom />
       <Pricing />
       <Testimonials />
