@@ -14,19 +14,8 @@ const NAV: { key: NavKey; label: string; group?: string }[] = [
 ]
 
 export function Logo({ size = 28 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden>
-      <rect width="32" height="32" rx="9" fill="url(#lg)" />
-      <path d="M9 14.5a9 9 0 0 1 14 0M12 18a5 5 0 0 1 8 0" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" />
-      <circle cx="16" cy="22" r="1.8" fill="#fff" />
-      <defs>
-        <linearGradient id="lg" x1="0" y1="0" x2="32" y2="32">
-          <stop stopColor="#2563EB" />
-          <stop offset="1" stopColor="#7C3AED" />
-        </linearGradient>
-      </defs>
-    </svg>
-  )
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src="/img/logo-echochat.png" width={size} height={size} alt="" aria-hidden style={{ width: size, height: size }} />
 }
 
 function Shell({ active, children, url = 'app.chatecho.com.br' }: { active: NavKey; children: ReactNode; url?: string }) {
