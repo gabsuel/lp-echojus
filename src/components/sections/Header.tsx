@@ -1,142 +1,90 @@
 'use client'
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Logo } from '@/components/mockups/Mockups'
+import { SITE } from '@/lib/config'
 
 const navLinks = [
   { label: 'Funcionalidades', href: '#funcionalidades' },
-  { label: 'Ferramentas', href: '#ferramentas' },
-  { label: 'Preços', href: '#precos' },
+  { label: 'Comparativo', href: '#comparativo' },
+  { label: 'Planos', href: '#precos' },
   { label: 'FAQ', href: '#faq' },
 ]
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 10)
-    window.addEventListener('scroll', handler)
-    return () => window.removeEventListener('scroll', handler)
-  }, [])
-
   return (
-    <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      style={{
-        background: scrolled ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.85)',
-        backdropFilter: 'blur(14px)',
-        WebkitBackdropFilter: 'blur(14px)',
-        borderBottom: scrolled ? '1px solid #E2E8F0' : '1px solid transparent',
-        boxShadow: scrolled ? '0 1px 16px rgba(15,23,42,0.06)' : 'none',
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <a href="/" className="flex items-center gap-2 shrink-0">
-            <Image
-              src="/img/logo/echo-dark-mode.png"
-              alt="Echojus"
-              width={120}
-              height={32}
-              className="h-8 w-auto"
-              priority
-            />
+    <header className="fixed top-3 left-0 right-0 z-50 px-4">
+      <div
+        className="mx-auto max-w-[680px] rounded-2xl"
+        style={{
+          background: 'rgba(8,8,12,0.82)',
+          border: '1px solid rgba(255,255,255,0.09)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+        }}
+      >
+        <div className="flex items-center justify-between h-12 pl-4 pr-2">
+          <a href="/" className="flex items-center gap-2 shrink-0" aria-label="EchoChat">
+            <Logo size={24} />
+            <span className="hidden sm:block text-sm font-semibold text-white tracking-tight">EchoChat</span>
           </a>
 
-          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 rounded-lg hover:bg-blue-50 transition-all duration-150"
-              >
-                {link.label}
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href} className="px-3 py-1.5 text-xs font-medium text-gray-300 hover:text-white transition-colors whitespace-nowrap">
+                {l.label}
               </a>
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-3">
-            <a
-              href="#"
-              className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors px-3 py-2"
-            >
-              Entrar
+          <div className="flex items-center gap-2">
+            <a href={SITE.signupUrl} className="btn-lavender text-xs font-semibold px-4 py-2 rounded-full whitespace-nowrap">
+              Teste Grátis
             </a>
-            <a
-              href="#precos"
-              className="btn-gradient text-white text-sm font-semibold px-5 py-2.5 rounded-full"
-            >
-              Testar grátis
+            <a href={SITE.loginUrl} className="hidden sm:block btn-outline-dark text-xs font-semibold px-4 py-2 rounded-full whitespace-nowrap">
+              Login
             </a>
+            <button
+              className="md:hidden p-2 text-white"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Abrir menu"
+              aria-expanded={menuOpen}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                {menuOpen ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+              </svg>
+            </button>
           </div>
-
-          {/* Mobile Hamburger */}
-          <button
-            className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-slate-100 transition"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Abrir menu"
-          >
-            <span
-              className="block w-5 h-0.5 bg-slate-700 transition-all duration-300 origin-center"
-              style={{ transform: menuOpen ? 'translateY(8px) rotate(45deg)' : 'none' }}
-            />
-            <span
-              className="block w-5 h-0.5 bg-slate-700 transition-all duration-300"
-              style={{ opacity: menuOpen ? 0 : 1 }}
-            />
-            <span
-              className="block w-5 h-0.5 bg-slate-700 transition-all duration-300 origin-center"
-              style={{ transform: menuOpen ? 'translateY(-8px) rotate(-45deg)' : 'none' }}
-            />
-          </button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="md:hidden overflow-hidden"
-            style={{ borderTop: '1px solid #E2E8F0', background: 'rgba(255,255,255,0.98)' }}
-          >
-            <div className="px-4 py-4 flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="px-4 py-3 text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="mt-3 pt-3 border-t border-slate-100 flex flex-col gap-2">
-                <a
-                  href="#"
-                  className="px-4 py-3 text-sm font-medium text-slate-600 hover:text-blue-600 text-center rounded-xl hover:bg-slate-50 transition"
-                >
-                  Entrar
-                </a>
-                <a
-                  href="#precos"
-                  onClick={() => setMenuOpen(false)}
-                  className="btn-gradient text-white text-sm font-semibold px-5 py-3 rounded-full text-center"
-                >
-                  Testar grátis
-                </a>
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden overflow-hidden border-t border-white/10"
+            >
+              <div className="p-3 flex flex-col">
+                {navLinks.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="px-3 py-3 text-sm text-gray-200 hover:text-white rounded-lg hover:bg-white/5"
+                  >
+                    {l.label}
+                  </a>
+                ))}
+                <a href={SITE.loginUrl} className="px-3 py-3 text-sm text-gray-200">Login</a>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </header>
   )
 }

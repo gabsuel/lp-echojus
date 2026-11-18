@@ -1,131 +1,64 @@
-'use client'
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import Reveal, { SectionTitle } from '@/components/ui/Reveal'
+import { SITE } from '@/lib/config'
 
-const forYes = [
-  'Você advoga em trabalhista, previdenciário ou consumidor',
-  'Você ainda usa planilha para calcular verbas rescisórias',
-  'Você tem clientes mas perde tempo demais em análise manual',
-  'Você quer escalar o escritório sem contratar mais pessoas',
-]
-
-const forNo = [
-  'Você só trabalha com direito penal ou empresarial puro (ainda)',
-  'Você não quer usar tecnologia de jeito nenhum',
+const segments = [
+  { icon: '👩‍⚖️', title: 'Advogado autônomo', text: 'Saia do WhatsApp pessoal e tenha cliente, processo e prazo organizados sozinho.', chips: ['Conversas', 'Agenda'] },
+  { icon: '🏛️', title: 'Escritórios com equipe', text: 'Distribua conversas e publicações por responsável e acompanhe a produtividade.', chips: ['Equipe', 'Indicadores'] },
+  { icon: '📣', title: 'Advocacia de volume e captação', text: 'Capte no Instagram e Facebook, meça a origem dos leads e feche mais contratos.', chips: ['Funil', 'Origem'] },
+  { icon: '🛠️', title: 'Trabalhista e previdenciário', text: 'Controle de prazos, audiências e novidades de cada processo sem perder nada.', chips: ['Prazos', 'Processos'] },
+  { icon: '🏦', title: 'Consumidor e bancário', text: 'Use o Radar de comarcas para saber onde cada ação rende mais e onde focar.', chips: ['Radar', 'Echo IA'] },
 ]
 
 export default function ForWhom() {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-
   return (
-    <section ref={ref} className="py-24" style={{ background: '#F8FAFF' }}>
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-14">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="mb-4"
-          >
-            <span
-              className="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-semibold"
-              style={{ background: '#EEF2FF', color: '#2563EB' }}
-            >
-              Para quem é?
-            </span>
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl font-bold text-slate-900"
-          >
-            O Echojus foi feito para você?
-          </motion.h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* For you */}
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="rounded-2xl p-7 border"
-            style={{ background: '#F0FDF4', borderColor: '#86EFAC' }}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
-                style={{ background: '#DCFCE7' }}
-              >
-                ✅
-              </div>
-              <h3 className="text-xl font-bold text-slate-900">O Echojus foi feito para você se:</h3>
-            </div>
-            <ul className="space-y-4">
-              {forYes.map((item, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.25 + i * 0.08 }}
-                  className="flex items-start gap-3"
+    <section className="py-28" style={{ background: '#ffffff' }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionTitle
+          light
+          eyebrow="Feito para a sua advocacia"
+          title={
+            <>
+              Do autônomo à grande banca.
+              <br />
+              <span className="serif-accent-dark" style={{ fontSize: '1.1em' }}>Do lead à sentença.</span>
+            </>
+          }
+          sub="Se você capta, atende, controla prazos e acompanha processos, o EchoChat é para você."
+        />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {segments.map((s, i) => (
+            <Reveal key={s.title} delay={(i % 3) * 0.08}>
+              <div className="group">
+                <div
+                  className="relative h-44 rounded-2xl overflow-hidden flex items-center justify-center"
+                  style={{ background: 'radial-gradient(circle at 50% 0%, #6d5df0 0%, #2a1f78 45%, #0d0b25 100%)' }}
                 >
-                  <span className="text-green-500 mt-0.5 shrink-0 font-bold">✓</span>
-                  <span className="text-slate-700 text-sm leading-relaxed">{item}</span>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Not for you */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="rounded-2xl p-7 border flex flex-col"
-            style={{ background: '#FFF7F7', borderColor: '#FECACA' }}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
-                style={{ background: '#FEE2E2' }}
-              >
-                ❌
+                  <div className="absolute inset-0 dots-bg opacity-40" />
+                  <div className="relative text-5xl drop-shadow-[0_0_24px_rgba(185,185,255,0.8)]">{s.icon}</div>
+                  <div className="absolute bottom-3 left-3 flex gap-1.5">
+                    {s.chips.map((c) => (
+                      <span key={c} className="text-[10px] font-semibold text-white/90 bg-white/15 backdrop-blur px-2 py-1 rounded-md">{c}</span>
+                    ))}
+                  </div>
+                </div>
+                <h3 className="mt-4 font-semibold text-slate-900">{s.title}</h3>
+                <p className="text-sm text-slate-500 mt-1 leading-relaxed">{s.text}</p>
               </div>
-              <h3 className="text-xl font-bold text-slate-900">Não é para você se:</h3>
-            </div>
-            <ul className="space-y-4">
-              {forNo.map((item, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.35 + i * 0.08 }}
-                  className="flex items-start gap-3"
-                >
-                  <span className="text-red-400 mt-0.5 shrink-0 font-bold">✗</span>
-                  <span className="text-slate-600 text-sm leading-relaxed">{item}</span>
-                </motion.li>
-              ))}
-            </ul>
-
+            </Reveal>
+          ))}
+          <Reveal delay={0.16}>
             <div
-              className="mt-auto pt-6 border-t border-red-100"
+              className="h-full min-h-[240px] rounded-2xl p-6 flex flex-col items-center justify-center text-center"
+              style={{ background: 'radial-gradient(circle at 50% 0%, #1e1a52 0%, #07070f 80%)' }}
             >
-              <div
-                className="rounded-xl p-4"
-                style={{ background: '#EEF2FF', border: '1px solid rgba(37,99,235,0.15)' }}
-              >
-                <p className="text-slate-700 text-sm leading-relaxed">
-                  <span className="text-blue-600 font-semibold">Em breve:</span>{' '}
-                  Expansão para tributário, cível e empresarial. Cadastre-se agora e seja avisado primeiro.
-                </p>
-              </div>
+              <p className="text-white font-semibold leading-snug mb-5">
+                Se você precisa captar mais com menos atrito, o EchoChat foi feito para a sua necessidade.
+              </p>
+              <a href={SITE.signupUrl} className="btn-lavender text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full">
+                Assinar agora
+              </a>
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

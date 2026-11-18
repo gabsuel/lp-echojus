@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Instrument_Serif, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({
@@ -8,24 +8,35 @@ const inter = Inter({
   display: 'swap',
 })
 
+const serif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: 'italic',
+  variable: '--font-serif',
+  display: 'swap',
+})
+
+const grotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-grotesk',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
-  title: 'Echojus — Plataforma Jurídica com IA',
-  description: 'Análise de documentos, cálculos jurídicos e agenda — tudo em um lugar, feito com IA. O Echojus substitui planilhas, calculadoras avulsas e horas de trabalho manual.',
-  keywords: 'software jurídico, calculadora trabalhista, análise de documentos IA, agenda jurídica, advogado',
+  title: 'EchoChat — CRM e gestão processual para advogados',
+  description:
+    'Atenda clientes no WhatsApp, capte leads, receba publicações dos tribunais e acompanhe processos e prazos em um só lugar.',
+  keywords: 'crm para advogados, whatsapp para escritório de advocacia, publicações e prazos, gestão de processos, software jurídico',
   openGraph: {
-    title: 'Echojus — Plataforma Jurídica com IA',
-    description: 'Você para de perder dinheiro e tempo fazendo na mão o que o Echojus faz em segundos.',
+    title: 'EchoChat — Do primeiro WhatsApp ao prazo cumprido',
+    description: 'CRM de atendimento + gestão de processos e prazos para advogados.',
     type: 'website',
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={inter.variable}>
+    <html lang="pt-BR" className={`${inter.variable} ${serif.variable} ${grotesk.variable}`}>
       <body>{children}</body>
     </html>
   )

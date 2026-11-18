@@ -1,114 +1,84 @@
 'use client'
-import { useState, useRef } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
+import Reveal from '@/components/ui/Reveal'
 
-const faqs = [
+export const faqs = [
   {
-    q: 'Preciso instalar alguma coisa?',
-    a: 'Não. O Echojus é 100% web. Você acessa pelo navegador, em qualquer dispositivo, sem instalar nada.',
+    q: 'Qual a diferença entre o EchoChat e um CRM tradicional?',
+    a: 'CRMs tradicionais só organizam contatos. O EchoChat junta atendimento no WhatsApp e Instagram, funil de leads e o módulo jurídico: publicações, prazos, processos, radar de comarcas e Echo IA.',
   },
   {
-    q: 'Os cálculos são confiáveis juridicamente?',
-    a: 'Sim. Todos os cálculos são baseados na legislação vigente e atualizados automaticamente. Cada cálculo gera uma memória de cálculo completa e auditável, que pode ser anexada à sua petição.',
+    q: 'Como as publicações dos tribunais chegam?',
+    a: 'Você cadastra seus processos e as publicações aparecem organizadas por tribunal e responsável, com atalhos para prazo vencido, a vencer e tratado.',
   },
   {
-    q: 'E se eu não gostar?',
-    a: 'Sem problema. Você tem 7 dias de teste gratuito sem precisar informar cartão. Se decidir assinar e em 30 dias não estiver satisfeito, devolvemos o valor integralmente.',
+    q: 'Posso usar meu número de WhatsApp atual?',
+    a: 'Sim. Você conecta o número lendo um QR Code e continua atendendo pelo painel, com histórico, etiquetas e responsável por conversa.',
   },
   {
-    q: 'Funciona para qualquer área do direito?',
-    a: 'Hoje o Echojus é especializado em direito trabalhista, previdenciário e bancário/consumidor. Os módulos de direito tributário e cível estão em desenvolvimento e serão lançados em breve.',
+    q: 'A IA responde sozinha aos meus clientes?',
+    a: 'Só se você quiser. O robô faz o primeiro atendimento e qualifica o lead, e o atendente assume quando quiser. A Echo IA gera rascunhos que você sempre revisa antes de enviar ou protocolar.',
   },
   {
-    q: 'Meus dados são seguros?',
-    a: 'Sim. Os dados são armazenados em infraestrutura Supabase com criptografia em trânsito e em repouso. Jamais vendemos ou compartilhamos seus dados com terceiros.',
+    q: 'Como funciona a implantação e o treinamento?',
+    a: 'Nossa equipe ajuda a conectar o WhatsApp, configurar etiquetas, etapas do funil e robôs, e a importar seus processos.',
   },
   {
-    q: 'Posso usar no celular?',
-    a: 'Sim. O Echojus é totalmente responsivo e funciona bem em smartphones e tablets. Ideal para consultar a agenda ou acessar um cálculo rapidamente.',
+    q: 'Meus dados e os dos meus clientes estão seguros?',
+    a: 'Os dados ficam separados por escritório e o acesso é controlado por usuário. Os detalhes de segurança e LGPD constam no contrato.',
+  },
+  {
+    q: 'Tem fidelidade ou multa de cancelamento?',
+    a: 'Não. Você testa grátis e pode cancelar quando quiser.',
   },
 ]
 
-function FAQItem({ faq, index, inView }: { faq: typeof faqs[0]; index: number; inView: boolean }) {
-  const [open, setOpen] = useState(false)
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: 0.1 + index * 0.07 }}
-      className="rounded-xl overflow-hidden border transition-colors duration-200"
-      style={{
-        borderColor: open ? '#BFDBFE' : '#E2E8F0',
-        background: open ? '#F0F7FF' : 'white',
-      }}
-    >
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
-      >
-        <span className="text-slate-800 font-medium text-base">{faq.q}</span>
-        <span
-          className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 text-sm font-bold"
-          style={{
-            background: open ? 'linear-gradient(135deg,#2563EB,#7C3AED)' : '#EEF2FF',
-            color: open ? 'white' : '#2563EB',
-            transform: open ? 'rotate(45deg)' : 'none',
-          }}
-        >
-          +
-        </span>
-      </button>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
-          >
-            <p className="px-5 pb-5 text-slate-500 text-sm leading-relaxed">{faq.a}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  )
-}
-
 export default function FAQ() {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const [open, setOpen] = useState<number | null>(0)
+  const [query, setQuery] = useState('')
+  const list = faqs.filter((f) => (f.q + f.a).toLowerCase().includes(query.toLowerCase()))
 
   return (
-    <section id="faq" ref={ref} className="py-24" style={{ background: '#FFFFFF' }}>
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="mb-4"
-          >
-            <span
-              className="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-semibold"
-              style={{ background: '#EEF2FF', color: '#2563EB' }}
-            >
-              FAQ
-            </span>
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl font-bold text-slate-900"
-          >
-            Perguntas frequentes
-          </motion.h2>
-        </div>
-        <div className="space-y-3">
-          {faqs.map((faq, i) => (
-            <FAQItem key={i} faq={faq} index={i} inView={inView} />
-          ))}
+    <section id="faq" className="py-28" style={{ background: '#050507' }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-5 gap-10">
+        <Reveal className="lg:col-span-2">
+          <span className="chip mb-5">Perguntas frequentes</span>
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight leading-tight">
+            Provavelmente você tenha alguma dessas dúvidas
+          </h2>
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Buscar respostas"
+            aria-label="Buscar respostas"
+            className="mt-8 w-full rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 outline-none focus:border-[#7c7cf6]"
+            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)' }}
+          />
+        </Reveal>
+
+        <div className="lg:col-span-3">
+          {list.length === 0 && <p className="text-gray-500 text-sm">Nenhuma pergunta encontrada.</p>}
+          {list.map((f, i) => {
+            const isOpen = open === i
+            return (
+              <div key={f.q} className="border-b" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
+                <button
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  className="w-full flex items-center justify-between gap-4 text-left py-5"
+                  aria-expanded={isOpen}
+                >
+                  <span className="font-medium" style={{ color: isOpen ? '#b9b9ff' : '#fff' }}>{f.q}</span>
+                  <span
+                    className="w-7 h-7 shrink-0 rounded-full flex items-center justify-center text-sm"
+                    style={isOpen ? { background: '#7c7cf6', color: '#0a0a1a' } : { border: '1px solid rgba(255,255,255,0.2)', color: '#fff' }}
+                  >
+                    {isOpen ? '×' : '+'}
+                  </span>
+                </button>
+                {isOpen && <p className="pb-5 pr-10 text-sm text-gray-400 leading-relaxed">{f.a}</p>}
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
