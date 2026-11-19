@@ -1,27 +1,19 @@
-import Header from '@/components/sections/Header'
-import Hero from '@/components/sections/Hero'
-import Features from '@/components/sections/Features'
-import Comparison from '@/components/sections/Comparison'
-import Showcase from '@/components/sections/Showcase'
-import ForWhom from '@/components/sections/ForWhom'
-import Pricing from '@/components/sections/Pricing'
-import FAQ from '@/components/sections/FAQ'
-import FinalCTA from '@/components/sections/FinalCTA'
-import Footer from '@/components/sections/Footer'
+import { Header3, Hero3 } from '@/components/v3/Top3'
+import { Day3, Features3, Intel3 } from '@/components/v3/Mid3'
+import { Pricing3, FAQ3, CTA3, Footer3 } from '@/components/v3/Bottom3'
 
 export default function Home() {
   return (
-    <main>
-      <Header />
-      <Hero />
-      <Features />
-      <Comparison />
-      <Showcase />
-      <ForWhom />
-      <Pricing />
-      <FAQ />
-      <FinalCTA />
-      <Footer />
+    <main style={{ background: '#f6f5f1' }}>
+      <Header3 />
+      <Hero3 />
+      <Day3 />
+      <Features3 />
+      <Intel3 />
+      <Pricing3 />
+      <FAQ3 />
+      <CTA3 />
+      <Footer3 />
     </main>
   )
 }

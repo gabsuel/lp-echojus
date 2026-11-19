@@ -100,3 +100,6 @@ body {
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #050507; }
 ::-webkit-scrollbar-thumb { background: #2a2a45; border-radius: 4px; }
+
+/* Destaques em azul nos títulos da LP: sem itálico sintético */
+em { font-style: normal; }

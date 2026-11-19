@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Instrument_Serif, Space_Grotesk } from 'next/font/google'
+import { Inter, Instrument_Serif, Space_Grotesk, Bricolage_Grotesque } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({
@@ -11,7 +11,7 @@ const inter = Inter({
 const serif = Instrument_Serif({
   subsets: ['latin'],
   weight: '400',
-  style: 'italic',
+  style: ['normal', 'italic'],
   variable: '--font-serif',
   display: 'swap',
 })
@@ -19,6 +19,12 @@ const serif = Instrument_Serif({
 const grotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-grotesk',
+  display: 'swap',
+})
+
+const display = Bricolage_Grotesque({
+  subsets: ['latin'],
+  variable: '--font-display',
   display: 'swap',
 })
 
@@ -36,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${serif.variable} ${grotesk.variable}`}>
+    <html lang="pt-BR" className={`${inter.variable} ${serif.variable} ${grotesk.variable} ${display.variable}`}>
       <body>{children}</body>
     </html>
   )
