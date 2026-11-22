@@ -3,68 +3,86 @@ import { useState } from 'react'
 import Reveal, { SectionTitle } from '@/components/ui/Reveal'
 import { SITE } from '@/lib/config'
 
-// ⚠️ PROPOSTA DE PLANOS — valores e limites são sugestões e precisam ser validados
-// com custo real (WhatsApp, IA, monitoramento de processos) antes de publicar.
+// Planos e valores definidos pelo cliente (tabela de preços EchoChat).
+// `from: true` = o preço é o início de uma faixa ("a partir de").
 export const plans = [
   {
-    name: 'Essencial',
-    monthly: 'R$ 197',
-    annual: 'R$ 157',
-    description: 'Para o advogado que quer sair do WhatsApp pessoal e organizar o atendimento',
-    cta: 'Começar teste grátis',
+    name: 'Solo',
+    monthly: 'R$ 147',
+    annual: 'R$ 147',
+    from: true,
+    description: 'Advogado sozinho',
+    cta: 'Assinar agora',
     highlight: false,
     href: SITE.signupUrl,
     features: [
-      { label: 'Números de WhatsApp', value: '1' },
-      { label: 'Usuários', value: 'Até 2' },
-      { label: 'Conversas + Kanban + Agenda', value: true },
-      { label: 'Robô de atendimento', value: 'Básico' },
-      { label: 'Publicações e prazos', value: false },
-      { label: 'Processos monitorados', value: false },
-      { label: 'Echo IA e Radar de comarcas', value: false },
-      { label: 'Suporte', value: 'Chat' },
+      { label: 'Usuários', value: '1' },
+      { label: 'Processos', value: '100' },
+      { label: 'CRM de atendimento', value: true },
+      { label: 'Petição', value: 'Cota mensal' },
     ],
   },
   {
     name: 'Escritório',
-    monthly: 'R$ 397',
-    annual: 'R$ 317',
-    description: 'Para escritórios que querem captar, atender e controlar prazos no mesmo lugar',
-    cta: 'Começar teste grátis',
+    monthly: 'R$ 297',
+    annual: 'R$ 297',
+    from: false,
+    description: '2 a 3 advogados',
+    cta: 'Assinar agora',
     highlight: true,
     badge: 'Mais escolhido',
     href: SITE.signupUrl,
     features: [
-      { label: 'Números de WhatsApp', value: 'Até 3' },
-      { label: 'Usuários', value: 'Até 5' },
-      { label: 'Conversas + Kanban + Agenda', value: true },
-      { label: 'Robôs de IA', value: 'Completos' },
-      { label: 'Publicações e prazos', value: true },
-      { label: 'Processos monitorados', value: 'Até 500' },
-      { label: 'Echo IA e Radar de comarcas', value: false },
-      { label: 'Suporte', value: 'Prioritário' },
+      { label: 'Usuários', value: '3' },
+      { label: 'Processos', value: '300' },
+      { label: 'CRM de atendimento', value: true },
+      { label: 'Petição', value: 'Ampliada' },
+      { label: 'Assinatura digital', value: true },
     ],
   },
   {
-    name: 'Banca',
-    monthly: 'R$ 797',
-    annual: 'R$ 637',
-    description: 'Para bancas com equipe grande e volume alto de processos e leads',
-    cta: 'Falar com a equipe',
+    name: 'Profissional',
+    monthly: 'R$ 597',
+    annual: 'R$ 597',
+    from: true,
+    description: 'Escritório com equipe',
+    cta: 'Assinar agora',
     highlight: false,
-    href: SITE.whatsappUrl,
+    href: SITE.signupUrl,
     features: [
-      { label: 'Números de WhatsApp', value: 'Até 10' },
-      { label: 'Usuários', value: 'Até 15' },
-      { label: 'Conversas + Kanban + Agenda', value: true },
-      { label: 'Robôs de IA', value: 'Completos' },
-      { label: 'Publicações e prazos', value: true },
-      { label: 'Processos monitorados', value: 'Até 3.000' },
-      { label: 'Echo IA e Radar de comarcas', value: true },
-      { label: 'Suporte', value: 'Dedicado + onboarding 1:1' },
+      { label: 'Usuários', value: '8' },
+      { label: 'Processos', value: '1.500' },
+      { label: 'CRM de atendimento', value: true },
+      { label: 'Petição e assinatura digital', value: true },
+      { label: 'Atendimento automático e robôs', value: true },
+    ],
+  },
+  {
+    name: 'Pleno',
+    monthly: 'R$ 1.297',
+    annual: 'R$ 1.297',
+    from: true,
+    description: 'Banca grande',
+    cta: 'Assinar agora',
+    highlight: false,
+    href: SITE.signupUrl,
+    features: [
+      { label: 'Usuários', value: '20' },
+      { label: 'Processos', value: '5.000' },
+      { label: 'CRM de atendimento', value: true },
+      { label: 'Petição e assinatura digital', value: true },
+      { label: 'Atendimento automático e robôs', value: true },
     ],
   },
 ]
+
+// Plano fora da tabela: proposta comercial.
+export const customPlan = {
+  name: 'Sob medida',
+  description: 'Casos fora da tabela. Volume de usuários e processos contratado sob proposta.',
+  cta: 'Pedir proposta',
+  href: SITE.whatsappUrl,
+}
 
 function FeatureRow({ label, value }: { label: string; value: string | boolean }) {
   return (
@@ -97,7 +115,7 @@ export default function Pricing() {
               <span className="serif-accent" style={{ fontSize: '1.1em' }}>do seu escritório</span>
             </>
           }
-          sub="Teste grátis, sem cartão. Evolua de plano quando a operação crescer."
+          sub="Garantia de 7 dias: se não gostar, devolvemos o seu dinheiro."
         />
 
         <div className="flex items-center justify-center gap-3 -mt-6 mb-12">
@@ -171,7 +189,7 @@ export default function Pricing() {
         </div>
 
         <p className="text-center mt-10 text-gray-500 text-sm">
-          Teste grátis · Cancele quando quiser · Configuração assistida pela nossa equipe
+          Garantia de 7 dias · Configuração assistida pela nossa equipe
         </p>
       </div>
     </section>

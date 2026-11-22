@@ -12,6 +12,10 @@ export const faqs = [
     a: 'Você cadastra seus processos e as publicações aparecem organizadas por tribunal e responsável, com atalhos para prazo vencido, a vencer e tratado.',
   },
   {
+    q: 'Como funciona a garantia de 7 dias?',
+    a: 'Você assina e usa o EchoChat por 7 dias. Se não gostar, devolvemos o valor que você pagou.',
+  },
+  {
     q: 'Posso usar meu número de WhatsApp atual?',
     a: 'Sim. Você conecta o número lendo um QR Code e continua atendendo pelo painel, com histórico, etiquetas e responsável por conversa.',
   },
@@ -26,10 +30,6 @@ export const faqs = [
   {
     q: 'Meus dados e os dos meus clientes estão seguros?',
     a: 'Os dados ficam separados por escritório e o acesso é controlado por usuário. Os detalhes de segurança e LGPD constam no contrato.',
-  },
-  {
-    q: 'Tem fidelidade ou multa de cancelamento?',
-    a: 'Não. Você testa grátis e pode cancelar quando quiser.',
   },
 ]
 

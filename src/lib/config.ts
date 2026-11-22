@@ -1,7 +1,7 @@
 // Links e dados editáveis da LP. Troque os placeholders antes de publicar.
 export const SITE = {
   name: 'EchoChat',
-  // TODO: trocar pelo link real de cadastro / teste grátis
+  // TODO: trocar pelo link real de cadastro / link de assinatura
   signupUrl: 'https://chatecho.com.br',
   loginUrl: 'https://chatecho.com.br',
   // TODO: trocar pelo WhatsApp comercial (formato 55DDDNUMERO)
