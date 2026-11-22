@@ -54,7 +54,6 @@ export const plans = [
       { label: 'Processos', value: '1.500' },
       { label: 'CRM de atendimento', value: true },
       { label: 'Petição e assinatura digital', value: true },
-      { label: 'Atendimento automático e robôs', value: true },
     ],
   },
   {
@@ -71,7 +70,6 @@ export const plans = [
       { label: 'Processos', value: '5.000' },
       { label: 'CRM de atendimento', value: true },
       { label: 'Petição e assinatura digital', value: true },
-      { label: 'Atendimento automático e robôs', value: true },
     ],
   },
 ]

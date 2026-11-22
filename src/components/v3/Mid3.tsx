@@ -7,7 +7,7 @@ import { INK, PAPER, BLUE, SERIF } from './tokens'
 /* Recursos em grade compacta: sem telas do sistema, só o que há dentro. */
 const features = [
   { n: '01', icon: 'chat', title: 'Caixa única de conversas', text: 'WhatsApp e Instagram no mesmo painel, com etiqueta por área do direito, responsável e histórico completo.' },
-  { n: '02', icon: 'bot', title: 'Robô de primeiro atendimento', text: 'Qualifica o lead, identifica a área e registra a origem do anúncio. Você assume quando quiser.' },
+  { n: '02', icon: 'user', title: 'Equipe organizada', text: 'Cada conversa tem um responsável, com etiqueta por área do direito e a origem do anúncio registrada.' },
   { n: '03', icon: 'funnel', title: 'Funil até o contrato', text: 'Cada contato vira um card. Arraste entre etapas e veja quanto cada campanha fecha.' },
   { n: '04', icon: 'bell', title: 'Prazos e publicações', text: 'Publicações dos tribunais com vencimento em destaque: vencido, a vencer e tratado.' },
   { n: '05', icon: 'folder', title: 'Processos por fase', text: 'Do distribuído ao arquivado, com aviso ao cliente pelo WhatsApp sem sair do sistema.' },

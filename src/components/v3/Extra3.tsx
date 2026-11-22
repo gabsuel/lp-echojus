@@ -8,8 +8,8 @@ const h2 = { ...SERIF, color: INK, fontSize: 'clamp(2.1rem, 3.6vw, 3.1rem)' }
 /* ───────── Como funciona ───────── */
 const steps = [
   { t: 'Conecte', d: 'Leia o QR Code do WhatsApp e conecte o Instagram. Nossa equipe ajuda na configuração.' },
-  { t: 'Importe', d: 'Traga seus contatos e processos. Etiquetas, funil e robôs saem prontos para o seu escritório.' },
-  { t: 'Atenda', d: 'O robô faz o primeiro atendimento e qualifica o lead. Você assume a conversa quando quiser.' },
+  { t: 'Importe', d: 'Traga seus contatos e processos. Etiquetas e etapas do funil saem prontas para o seu escritório.' },
+  { t: 'Atenda', d: 'Responda WhatsApp e Instagram na mesma caixa, com etiqueta por área e um responsável por conversa.' },
   { t: 'Acompanhe', d: 'Prazos, publicações e processos no mesmo cadastro do cliente, com alerta de vencimento.' },
 ]
 
@@ -43,7 +43,7 @@ export function Steps3() {
 const profiles = [
   { icon: 'user', c: '#2563eb', t: 'Advogado solo', d: 'Atenda e controle prazos sem equipe de apoio.', items: ['Caixa única de WhatsApp e Instagram', 'Prazos e publicações em destaque', 'Cadastro único por cliente'] },
   { icon: 'building', c: '#4f46e5', t: 'Banca contenciosa', d: 'Muitos processos, vários advogados, nenhum prazo perdido.', items: ['Responsável por conversa e por publicação', 'Processos por fase com novidades', 'Radar de comarcas e Echo IA'] },
-  { icon: 'funnel', c: '#0ea5e9', t: 'Captação de clientes', d: 'Anúncios que viram contratos, com origem rastreada.', items: ['Funil do lead ao contrato', 'Origem: Instagram, Facebook, orgânico', 'Robô qualifica antes de você'] },
+  { icon: 'funnel', c: '#0ea5e9', t: 'Captação de clientes', d: 'Anúncios que viram contratos, com origem rastreada.', items: ['Funil do lead ao contrato', 'Origem: Instagram, Facebook, orgânico', 'Etiqueta por campanha e área'] },
 ]
 
 export function Profiles3() {
@@ -82,7 +82,7 @@ export function Profiles3() {
 /* ───────── Comparativo (cartões, sem rolagem lateral) ───────── */
 type Cell = { k: 'no' | 'mid' | 'yes'; t: string }
 const rows: { q: string; c: [Cell, Cell, Cell] }[] = [
-  { q: 'WhatsApp e Instagram', c: [{ k: 'no', t: 'Não tem' }, { k: 'mid', t: 'Parcial' }, { k: 'yes', t: 'Caixa única com robô' }] },
+  { q: 'WhatsApp e Instagram', c: [{ k: 'no', t: 'Não tem' }, { k: 'mid', t: 'Parcial' }, { k: 'yes', t: 'Caixa única de atendimento' }] },
   { q: 'Funil até o contrato', c: [{ k: 'no', t: 'Planilha à mão' }, { k: 'mid', t: 'Parcial' }, { k: 'yes', t: 'Cards com origem do lead' }] },
   { q: 'Prazos e publicações', c: [{ k: 'no', t: 'Anotados à mão' }, { k: 'mid', t: 'Parcial' }, { k: 'yes', t: 'Alerta de vencimento' }] },
   { q: 'Processos por fase', c: [{ k: 'no', t: 'Manual' }, { k: 'mid', t: 'Básico' }, { k: 'yes', t: 'Com novidades em destaque' }] },

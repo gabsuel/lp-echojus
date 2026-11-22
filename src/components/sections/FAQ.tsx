@@ -20,12 +20,8 @@ export const faqs = [
     a: 'Sim. Você conecta o número lendo um QR Code e continua atendendo pelo painel, com histórico, etiquetas e responsável por conversa.',
   },
   {
-    q: 'A IA responde sozinha aos meus clientes?',
-    a: 'Só se você quiser. O robô faz o primeiro atendimento e qualifica o lead, e o atendente assume quando quiser. A Echo IA gera rascunhos que você sempre revisa antes de enviar ou protocolar.',
-  },
-  {
     q: 'Como funciona a implantação e o treinamento?',
-    a: 'Nossa equipe ajuda a conectar o WhatsApp, configurar etiquetas, etapas do funil e robôs, e a importar seus processos.',
+    a: 'Nossa equipe ajuda a conectar o WhatsApp, configurar etiquetas, etapas do funil e a importar seus processos.',
   },
   {
     q: 'Meus dados e os dos meus clientes estão seguros?',

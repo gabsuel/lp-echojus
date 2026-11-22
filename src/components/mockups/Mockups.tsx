@@ -111,7 +111,7 @@ export function ConversasMock() {
           <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
             <span className="text-[11px] font-bold text-slate-800">Marcos Teixeira</span>
             <Pill tone="green">WhatsApp</Pill>
-            <span className="ml-auto"><Pill tone="violet">🤖 Robô atendendo</Pill></span>
+            <span className="ml-auto"><Pill tone="violet">Dra. Paula</Pill></span>
           </div>
           <div className="flex-1 py-3 space-y-2">
             <div className="max-w-[78%] bg-slate-100 rounded-xl rounded-bl-sm px-2.5 py-1.5 text-[10px] text-slate-700">
