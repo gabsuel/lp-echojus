@@ -56,9 +56,9 @@ export function Profiles3() {
             Do solo à banca, <em style={{ color: BLUE }}>no seu ritmo.</em>
           </h2>
         </div>
-        <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 pb-2 md:mx-0 md:px-0 md:overflow-visible">
+        <div className="grid md:grid-cols-3 gap-4 md:gap-6">
           {profiles.map((p, i) => (
-            <Reveal key={p.t} delay={i * 0.06} className="snap-center shrink-0 w-[82%] sm:w-[60%] md:w-auto">
+            <Reveal key={p.t} delay={i * 0.06} className="h-full">
               <div className="h-full rounded-2xl p-7" style={{ background: '#fff', border: '1px solid rgba(12,26,51,0.08)' }}>
                 <span className="w-11 h-11 rounded-xl flex items-center justify-center text-white" style={{ background: p.c, boxShadow: `0 10px 22px -8px ${p.c}` }}><Icon name={p.icon} size={22} /></span>
                 <h3 className="mt-5 text-2xl" style={{ ...SERIF, color: INK }}>{p.t}</h3>
@@ -79,47 +79,58 @@ export function Profiles3() {
   )
 }
 
-/* ───────── Comparativo ───────── */
-const rows: [string, string, string, string][] = [
-  ['Atendimento no WhatsApp e Instagram', '–', 'Parcial', '✓'],
-  ['Funil de captação até o contrato', '–', 'Parcial', '✓'],
-  ['Prazos e publicações dos tribunais', 'Manual', 'Parcial', '✓'],
-  ['Processos por fase', 'Manual', '✓', '✓'],
-  ['Cliente, conversa e processo no mesmo cadastro', '–', '–', '✓'],
-  ['Implantação assistida pela equipe', '–', 'Varia', '✓'],
+/* ───────── Comparativo (cartões, sem rolagem lateral) ───────── */
+type Cell = { k: 'no' | 'mid' | 'yes'; t: string }
+const rows: { q: string; c: [Cell, Cell, Cell] }[] = [
+  { q: 'WhatsApp e Instagram', c: [{ k: 'no', t: 'Não tem' }, { k: 'mid', t: 'Parcial' }, { k: 'yes', t: 'Caixa única com robô' }] },
+  { q: 'Funil até o contrato', c: [{ k: 'no', t: 'Planilha à mão' }, { k: 'mid', t: 'Parcial' }, { k: 'yes', t: 'Cards com origem do lead' }] },
+  { q: 'Prazos e publicações', c: [{ k: 'no', t: 'Anotados à mão' }, { k: 'mid', t: 'Parcial' }, { k: 'yes', t: 'Alerta de vencimento' }] },
+  { q: 'Processos por fase', c: [{ k: 'no', t: 'Manual' }, { k: 'mid', t: 'Básico' }, { k: 'yes', t: 'Com novidades em destaque' }] },
+  { q: 'Cliente, conversa e processo', c: [{ k: 'no', t: 'Separados' }, { k: 'no', t: 'Separados' }, { k: 'yes', t: 'Um cadastro só' }] },
+  { q: 'Implantação', c: [{ k: 'no', t: 'Por conta própria' }, { k: 'mid', t: 'Varia' }, { k: 'yes', t: 'Assistida pela equipe' }] },
 ]
+
+function CellView({ cell, hero }: { cell: Cell; hero?: boolean }) {
+  const color = cell.k === 'no' ? '#ef4444' : cell.k === 'mid' ? '#94a3b8' : BLUE
+  return (
+    <div
+      className="flex flex-col items-center justify-center text-center gap-1 rounded-xl px-1.5 py-3 min-h-[84px]"
+      style={hero ? { background: 'rgba(37,99,235,0.09)', border: '1px solid rgba(37,99,235,0.2)' } : undefined}
+    >
+      <span style={{ color }}><Icon name={cell.k === 'no' ? 'x' : 'check'} size={18} /></span>
+      <span className="text-[12px] sm:text-sm leading-tight font-medium break-words" style={{ color: hero ? BLUE : cell.k === 'no' ? '#94a3b8' : '#475569' }}>{cell.t}</span>
+    </div>
+  )
+}
 
 export function Compare3() {
   return (
     <section id="comparativo" className="py-14 sm:py-20" style={{ background: '#fff' }}>
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mb-8 sm:mb-10 mx-auto text-center lg:mx-0 lg:text-left">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mb-8 sm:mb-10 mx-auto text-center">
           <Chip>Comparativo</Chip>
           <h2 className="mt-4 leading-[1.02] tracking-tight" style={h2}>
             Planilha, sistema genérico ou <em style={{ color: BLUE }}>EchoChat.</em>
           </h2>
         </div>
-        <div className="overflow-x-auto rounded-2xl" style={{ border: '1px solid rgba(12,26,51,0.1)' }}>
-          <table className="w-full text-sm min-w-[560px]">
-            <thead>
-              <tr style={{ background: PAPER, color: INK }}>
-                <th className="text-left font-semibold p-4" />
-                <th className="p-4 font-semibold">Planilhas</th>
-                <th className="p-4 font-semibold">Sistema genérico</th>
-                <th className="p-4 font-semibold text-white" style={{ background: BLUE }}>EchoChat</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((r) => (
-                <tr key={r[0]} style={{ borderTop: '1px solid rgba(12,26,51,0.08)', color: INK }}>
-                  <td className="p-4 font-medium">{r[0]}</td>
-                  <td className="p-4 text-center opacity-60">{r[1]}</td>
-                  <td className="p-4 text-center opacity-60">{r[2]}</td>
-                  <td className="p-4 text-center font-bold" style={{ color: BLUE, background: 'rgba(37,99,235,0.06)' }}>{r[3]}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+
+        <div className="grid grid-cols-3 gap-2 px-3 sm:px-5 pb-3 text-center text-[11px] sm:text-xs font-bold uppercase tracking-wide" style={{ color: '#64748b' }}>
+          <span>Planilhas</span>
+          <span>Sistema genérico</span>
+          <span style={{ color: BLUE }}>EchoChat</span>
+        </div>
+
+        <div className="space-y-3">
+          {rows.map((r) => (
+            <div key={r.q} className="rounded-2xl p-3 sm:p-5" style={{ background: PAPER, border: '1px solid rgba(12,26,51,0.08)' }}>
+              <h3 className="text-base sm:text-lg px-1 pb-3 mb-3" style={{ ...SERIF, color: INK, borderBottom: '1px solid rgba(12,26,51,0.08)' }}>{r.q}</h3>
+              <div className="grid grid-cols-3 gap-2">
+                <CellView cell={r.c[0]} />
+                <CellView cell={r.c[1]} />
+                <CellView cell={r.c[2]} hero />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

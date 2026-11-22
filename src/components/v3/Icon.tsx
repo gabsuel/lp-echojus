@@ -9,6 +9,7 @@ const PATHS: Record<string, string> = {
   chart: 'M4 20V10M10 20V4M16 20v-7M22 20H2',
   user: 'M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z',
   building: 'M4 21V5a1 1 0 011-1h8a1 1 0 011 1v16M14 9h5a1 1 0 011 1v11M8 8h2M8 12h2M8 16h2M3 21h18',
+  x: 'M6 6l12 12M18 6L6 18',
   check: 'M5 13l4 4L19 7',
   layers: 'M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5',
   sparkle: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z',
