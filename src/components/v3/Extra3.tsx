@@ -1,6 +1,7 @@
 import Reveal from '@/components/ui/Reveal'
 import Chip from './Chip'
 import Icon from './Icon'
+import StepPath from './StepPath'
 import { INK, PAPER, BLUE, SERIF } from './tokens'
 
 const h2 = { ...SERIF, color: INK, fontSize: 'clamp(2.1rem, 3.6vw, 3.1rem)' }
@@ -23,17 +24,7 @@ export function Steps3() {
             Do primeiro contato <em style={{ color: BLUE }}>ao prazo cumprido.</em>
           </h2>
         </div>
-        <ol className="mt-8 sm:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-8">
-          {steps.map((x, i) => (
-            <Reveal key={x.t} delay={i * 0.05}>
-              <li className="list-none h-full">
-                <span className="inline-flex w-10 h-10 rounded-xl items-center justify-center text-sm font-semibold text-white" style={{ background: 'linear-gradient(135deg,#2563eb,#0ea5e9)' }}>{i + 1}</span>
-                <h3 className="mt-3 text-xl sm:text-2xl" style={{ ...SERIF, color: INK }}>{x.t}</h3>
-                <p className="mt-2 text-sm sm:text-base leading-relaxed" style={{ color: '#4a5878' }}>{x.d}</p>
-              </li>
-            </Reveal>
-          ))}
-        </ol>
+        <StepPath steps={steps} />
       </div>
     </section>
   )

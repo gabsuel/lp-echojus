@@ -1,8 +1,8 @@
 import Reveal from '@/components/ui/Reveal'
 import Chip from './Chip'
 import Icon from './Icon'
-import Ripples from './Ripples'
-import { INK, PAPER, BLUE, SERIF } from './tokens'
+import SpotCard from './SpotCard'
+import { INK, SERIF } from './tokens'
 
 /* Recursos em grade compacta: sem telas do sistema, só o que há dentro. */
 const features = [
@@ -17,7 +17,6 @@ const features = [
 export function Features3() {
   return (
     <section id="recursos" className="relative overflow-hidden py-14 sm:py-20" style={{ background: INK }}>
-      <Ripples className="absolute -left-72 top-0 w-[1000px] h-[1000px]" color="#60a5fa" opacity={0.14} />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-10 sm:mb-12 mx-auto text-center lg:mx-0 lg:text-left">
           <Chip dark icon="layers">Recursos</Chip>
@@ -28,11 +27,11 @@ export function Features3() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {features.map((f, i) => (
             <Reveal key={f.n} delay={i * 0.04}>
-              <div className="h-full rounded-2xl p-5 sm:p-7" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <SpotCard>
                 <span className="w-11 h-11 rounded-xl flex items-center justify-center text-white" style={{ background: 'linear-gradient(135deg,#2563eb,#0ea5e9)', boxShadow: '0 10px 22px -8px rgba(37,99,235,0.8)' }}><Icon name={f.icon} size={22} /></span>
                 <h3 className="mt-4 text-xl text-white" style={SERIF}>{f.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-blue-100/70">{f.text}</p>
-              </div>
+              </SpotCard>
             </Reveal>
           ))}
         </div>
@@ -40,5 +39,3 @@ export function Features3() {
     </section>
   )
 }
-
-export { PAPER, BLUE }

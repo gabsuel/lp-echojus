@@ -5,6 +5,8 @@ import { ConversasMock, Logo } from '@/components/mockups/Mockups'
 import { SITE } from '@/lib/config'
 import Chip from './Chip'
 import Icon from './Icon'
+import ShaderBg from './ShaderBg'
+import ScrollTilt from './ScrollTilt'
 import { INK, SERIF } from './tokens'
 
 const links = [
@@ -102,6 +104,7 @@ export function Hero3() {
       className="relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-24"
       style={{ background: `radial-gradient(ellipse 90% 55% at 50% -5%, rgba(59,130,246,0.38), transparent 70%), radial-gradient(ellipse 60% 40% at 90% 40%, rgba(14,165,233,0.12), transparent 70%), ${INK}` }}
     >
+      <ShaderBg className="absolute inset-0 w-full h-full opacity-70 pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 lg:gap-10 items-center">
         <div className="lg:col-span-5 text-center lg:text-left">
           <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE }}>
@@ -116,7 +119,7 @@ export function Hero3() {
           >
             CRM para advogados:
             <br />
-            atenda no WhatsApp e <em style={{ color: '#60a5fa' }}>não perca prazos.</em>
+            atenda no WhatsApp e <em className="shine-text">não perca prazos.</em>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
@@ -152,9 +155,11 @@ export function Hero3() {
           transition={{ duration: 0.9, ease: EASE, delay: 0.25 }}
           className="lg:col-span-7 relative lg:-mr-24 mt-4 lg:mt-0"
         >
-          <div className="rounded-2xl overflow-hidden" style={{ boxShadow: '0 40px 90px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1)' }}>
-            <ConversasMock />
-          </div>
+          <ScrollTilt>
+            <div className="rounded-2xl overflow-hidden" style={{ boxShadow: '0 40px 90px -20px rgba(0,0,0,0.6), 0 0 70px -10px rgba(59,130,246,0.45), 0 0 0 1px rgba(255,255,255,0.12)' }}>
+              <ConversasMock />
+            </div>
+          </ScrollTilt>
           <Float className="left-2 -top-4 sm:-left-6 sm:-top-5" icon="chat" title="Novo contato" sub="Instagram · agora" delay={0} />
           <Float className="right-2 -bottom-4 sm:right-6 sm:-bottom-6" icon="bell" title="Prazo em 3 dias" sub="TJ-SP · responsável definido" delay={0.3} />
         </motion.div>

@@ -103,3 +103,44 @@ body {
 
 /* Destaques em azul nos títulos da LP: sem itálico sintético */
 em { font-style: normal; }
+
+/* LP v3: texto com brilho no hero */
+.shine-text {
+  background: linear-gradient(100deg, #60a5fa 20%, #e0f2fe 40%, #38bdf8 60%, #60a5fa 80%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  animation: shine 7s linear infinite;
+}
+@keyframes shine {
+  from { background-position: 120% 0; }
+  to { background-position: -100% 0; }
+}
+
+/* LP v3: cartão com brilho que segue o ponteiro */
+.spot-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s, transform 0.3s;
+}
+.spot-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(260px circle at var(--x, 50%) var(--y, 0%), rgba(56, 189, 248, 0.18), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.spot-card:hover { border-color: rgba(96, 165, 250, 0.5); transform: translateY(-3px); }
+.spot-card:hover::before { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .shine-text { animation: none; }
+  .spot-card:hover { transform: none; }
+}
